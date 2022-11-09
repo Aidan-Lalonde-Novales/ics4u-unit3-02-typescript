@@ -1,10 +1,9 @@
 /**
- * This program tells you the length
- * required for a board foot.
+ * This program calculates a factorial using recursion.
  *
  * By:      Aidan Lalonde-Novales
  * Version: 1.0
- * Since:   2022-09-24
+ * Since:   2022-11-09
  */
 
 import promptSync from 'prompt-sync'
@@ -12,30 +11,30 @@ import promptSync from 'prompt-sync'
 const prompt = promptSync()
 
 /**
- * @param {number} width Width of the wood
- * @param {number} height Height of the wood
- * @returns {number} length Length of the wood
+ * Calulates a factorial using recursion.
+ *
+ * @param {number} userInt input from main
+ * @returns {number} accurate calculation
  */
-function boardFoot(width: number, height: number): number {
-  const BOARD_FOOT = 144
-  const length = BOARD_FOOT / (width * height)
-  return length
+function factorial(userInt: number): number {
+  if (userInt < 0) {
+    return -1
+  } else if (userInt === 0) {
+    return 1
+  } else {
+    return userInt * factorial(userInt - 1)
+  }
 }
 
-console.log('This program calculates the required length for a board foot.')
-
 // Input
-const widthString = prompt('Enter the width of the wood (in): ')
-const width = parseFloat(widthString)
-const heightString = prompt('Enter the height of the wood (in): ')
-const height = parseFloat(heightString)
+const userInput = prompt('enter factorial: ')
+const userInt = parseInt(userInput)
 
 // Process and Output
-if (isNaN(width) || isNaN(height)) {
-  console.log('\nInvalid Input.')
+if (!isNaN(userInt)) {
+  console.log(`\n${userInt}! = ${factorial(userInt)}`)
 } else {
-  const length = boardFoot(width, height)
-  console.log(`\nYour wood length should be ${length} inch(es) long.`)
+  console.log('\nPlease enter an integer next time.')
 }
 
 console.log('\nDone.')
